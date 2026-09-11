@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: fcm-arrivon-flight-service
+  http:
+    converters:
+      preferred-json-mapper: jackson2
+
+amadeus:
+  api:
+    base-url: https://test.api.amadeus.com

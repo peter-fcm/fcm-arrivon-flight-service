@@ -1,0 +1,131 @@
+= Flight Booking Service API Documentation
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+== Overview
+The Flight Booking Service provides a RESTful API to manage the end-to-end flight booking journey with the Amadeus Global Distribution System (GDS).
+The API encompasses flight search, price quotation, order creation, order lookup, order updates, and order cancellation.
+
+=== HTTP Status Codes
+[cols="1,3"]
+|===
+| Status Code | Description
+
+| `200 OK`
+| Standard response for successful HTTP requests.
+
+| `201 Created`
+| The request has been fulfilled, resulting in the creation of a new flight order. The `Location` header contains the resource URI.
+
+| `204 No Content`
+| The request has been successfully fulfilled, such as after deleting or cancelling a flight order.
+
+| `400 Bad Request`
+| The server could not understand the request due to invalid syntax or parameters (RFC 7807 problem details).
+
+| `502 Bad Gateway`
+| Downstream Amadeus GDS service error or gateway failure.
+|===
+
+== 1. Flight Search
+
+=== Search Flight Offers
+Searches available flights matching the specified origin, destination, travel dates, and passenger requirements.
+
+==== Request
+include::{snippets}/flight-offers-search/http-request.adoc[]
+
+==== Query Parameters
+include::{snippets}/flight-offers-search/query-parameters.adoc[]
+
+==== Response
+include::{snippets}/flight-offers-search/http-response.adoc[]
+
+==== Response Fields
+include::{snippets}/flight-offers-search/response-fields.adoc[]
+
+== 2. Flight Pricing
+
+=== Confirm Flight Offer Pricing
+Validates pricing and fare rules for selected flight offer(s) before proceeding to booking.
+
+==== Request
+include::{snippets}/flight-offers-price/http-request.adoc[]
+
+==== Request Fields
+include::{snippets}/flight-offers-price/request-fields.adoc[]
+
+==== Response
+include::{snippets}/flight-offers-price/http-response.adoc[]
+
+==== Response Fields
+include::{snippets}/flight-offers-price/response-fields.adoc[]
+
+== 3. Flight Booking & Order Management
+
+=== Create Flight Order
+Confirms the booking with passenger details and records it in the Amadeus GDS.
+
+==== Request
+include::{snippets}/flight-orders-create/http-request.adoc[]
+
+==== Request Fields
+include::{snippets}/flight-orders-create/request-fields.adoc[]
+
+==== Response
+include::{snippets}/flight-orders-create/http-response.adoc[]
+
+==== Response Headers
+include::{snippets}/flight-orders-create/response-headers.adoc[]
+
+==== Response Fields
+include::{snippets}/flight-orders-create/response-fields.adoc[]
+
+=== Retrieve Flight Order
+Fetches details of a confirmed flight booking order by its unique identifier.
+
+==== Request
+include::{snippets}/flight-orders-get/http-request.adoc[]
+
+==== Path Parameters
+include::{snippets}/flight-orders-get/path-parameters.adoc[]
+
+==== Response
+include::{snippets}/flight-orders-get/http-response.adoc[]
+
+==== Response Fields
+include::{snippets}/flight-orders-get/response-fields.adoc[]
+
+=== Update Flight Order
+Modifies remarks or details on an existing flight booking order.
+
+==== Request
+include::{snippets}/flight-orders-update/http-request.adoc[]
+
+==== Path Parameters
+include::{snippets}/flight-orders-update/path-parameters.adoc[]
+
+==== Request Fields
+include::{snippets}/flight-orders-update/request-fields.adoc[]
+
+==== Response
+include::{snippets}/flight-orders-update/http-response.adoc[]
+
+==== Response Fields
+include::{snippets}/flight-orders-update/response-fields.adoc[]
+
+=== Cancel Flight Order
+Cancels an existing flight booking order in the Global Distribution System.
+
+==== Request
+include::{snippets}/flight-orders-cancel/http-request.adoc[]
+
+==== Path Parameters
+include::{snippets}/flight-orders-cancel/path-parameters.adoc[]
+
+==== Response
+include::{snippets}/flight-orders-cancel/http-response.adoc[]
